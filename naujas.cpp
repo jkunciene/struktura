@@ -15,6 +15,7 @@ struct komanda{
     void skaitom(komanda Duomenys[], int kiekis, const char byla[]);
     void rasom(komanda Duomenys[], int kiekis, string text);
     void kuriam(komanda Duomenys[], int kiekis, komanda BendriDuomenys[], int nuoKiek);
+    void rikiavimas(komanda BendriDuomenys[], int kiekis);
 
 int main(){
 
@@ -34,7 +35,8 @@ int main(){
     kuriam(begikai1, kiek1, bendraKomanda, 0);
     kuriam(begikai2, kiek2, bendraKomanda, kiek1);
     rasom(bendraKomanda, kiekisViso, "bendra komanda \n");
-
+    rikiavimas(bendraKomanda, kiekisViso);
+    rasom(bendraKomanda, kiekisViso, "surikiuotas \n");
 
     out.close();
     return 0;
@@ -76,3 +78,16 @@ void kuriam(komanda Duomenys[], int kiekis, komanda BendriDuomenys[], int nuoKie
 
     }
 }
+void rikiavimas(komanda BendriDuomenys[], int kiekis){
+    int laikinas;
+    for(int i=0; i<kiekis; i++){
+        for(int j=1; j<kiekis-1; j++){
+            if (BendriDuomenys[j-1].laikas>=BendriDuomenys[j].laikas){
+                laikinas=BendriDuomenys[j].laikas;
+                BendriDuomenys[j].laikas=BendriDuomenys[j-1].laikas;
+                BendriDuomenys[j-1].laikas=laikinas;
+            }
+        }
+    }
+}
+
